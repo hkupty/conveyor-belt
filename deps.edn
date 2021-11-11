@@ -1,0 +1,17 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        org.eclipse.jgit/org.eclipse.jgit {:mvn/version "5.9.0.202009080501-r"}
+        org.apache.maven/maven-core {:mvn/version "3.6.3"}
+        org.slf4j/slf4j-nop {:mvn/version "1.7.30"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "0.10.0"}}}
+  :runner
+  {:extra-deps {com.cognitect/test-runner
+                {:git/url "https://github.com/cognitect-labs/test-runner"
+                 :sha "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
+   :main-opts ["-m" "cognitect.test-runner"
+               "-d" "test"]}
+  :uberjar {:extra-deps {seancorfield/depstar {:mvn/version "0.5.1"}}
+            :main-opts ["-m" "hf.depstar.uberjar" "conveyor-belt.jar"
+                        "-C" "-m" "hkupty.conveyor-belt"]}}}
